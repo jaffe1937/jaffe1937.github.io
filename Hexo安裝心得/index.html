@@ -135,7 +135,7 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>拖了很久還是要建個blog<br>在Wordpress跟Hexo選擇，之前申請github都沒有使用，乾脆選Hexo+github作為blog，順便練習git，安裝過程不難，這邊紀錄作為blog的第一篇文章。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>拖了很久終於把blog建立起來<br>原本打算使用wordpress，但覺得wordpress在運行成本跟後續的維護上比較高，加上不想使用免費的線上blog，就找了google大神幫忙，發現了Hexo這套，而且可以跟github配合，再加上之前申請github都沒有使用，乾脆選Hexo+github作為blog，順便練習git，安裝過程不難，這邊紀錄作為blog的第一篇文章。</p>
 <hr>
 <h2 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h2><p>Hexo基於Node.js開發，作者是台灣人(tommy351 )，詳細介紹請參考<a href="http://zespia.tw/blog/2012/10/11/hexo-debut/" target="_blank" rel="external">這邊</a></p>
 <h3 id="我的搭建環境-mac系統下-："><a href="#我的搭建環境-mac系統下-：" class="headerlink" title="我的搭建環境(mac系統下)："></a>我的搭建環境(mac系統下)：</h3><p>node: v6.9.1<br>git: v2.9.2</p>
@@ -208,7 +208,7 @@
 <h4 id="hexo命令縮寫"><a href="#hexo命令縮寫" class="headerlink" title="hexo命令縮寫"></a>hexo命令縮寫</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo g：hexo generate</div><div class="line"></div><div class="line">hexo c：hexo clean</div><div class="line"></div><div class="line">hexo s：hexo server</div><div class="line"></div><div class="line">hexo d：hexo deploy</div></pre></td></tr></table></figure>
 <h4 id="hexo命令組合"><a href="#hexo命令組合" class="headerlink" title="hexo命令組合"></a>hexo命令組合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean &amp;&amp; hexo g -s，清除、生成、啟動</div><div class="line"></div><div class="line">hexo clean &amp;&amp; hexo g -d，清除、生成、部署</div></pre></td></tr></table></figure>
 <h4 id="建立時踩到的坑"><a href="#建立時踩到的坑" class="headerlink" title="建立時踩到的坑"></a>建立時踩到的坑</h4><p>1.使用<code>npm install hexo-cli -g</code>無權限寫入，後來發現只要前面加<code>sudo</code>就可以解決</p>
-<p>2.無法部署到github<br>執行這串命令時，<code>$ npm install hexo-deployer-git --save</code>，前面加了<code>sudo</code>還是一直報錯，google找到一片文章提醒，這串命令必須進到hexo目錄下執行，才解決部署的問題。</p>
+<p>2.無法部署到github<br>執行這串命令時，<code>$ npm install hexo-deployer-git --save</code>，前面加了<code>sudo</code>還是報錯，google找到一篇文章提醒，這串命令必須進到hexo目錄下執行，才解決部署的問題。</p>
 <h4 id="建立hexo時，參考下列文章："><a href="#建立hexo時，參考下列文章：" class="headerlink" title="建立hexo時，參考下列文章："></a>建立hexo時，參考下列文章：</h4><p><a href="http://www.cnblogs.com/liulangmao/p/4323064.html" target="_blank" rel="external">http://www.cnblogs.com/liulangmao/p/4323064.html</a><br><a href="http://www.jianshu.com/p/f4cc5866946b" target="_blank" rel="external">http://www.jianshu.com/p/f4cc5866946b</a><br><a href="http://www.aliengu.com/archives/1630" target="_blank" rel="external">http://www.aliengu.com/archives/1630</a></p>
 
         </div>
@@ -220,6 +220,17 @@
 <section id="comment">
   <!-- <h1 class="title">Comments</h1> -->
 
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-Hexo安裝心得';
+          this.page.title = 'Hexo安裝心得';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
   
 </section>
 
@@ -241,6 +252,24 @@
 
   <!-- Footer -->
   <!-- Footer-widgets -->
+
+    <script type="text/javascript">
+    var disqus_shortname = 'jaffe1937-blog';
+    var disqus_config = function () {
+        this.page.url = 'http://jaffe1937.github.io/Hexo安裝心得/';
+        this.page.identifier = '/Hexo安裝心得/';
+        this.page.title = 'Hexo安裝心得';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+
 <div class="footer-widgets">
   <div class="row inside-wrapper">
     <div class="col-1-3">
@@ -294,6 +323,22 @@
   <!-- After footer scripts -->
   <!-- scripts -->
 <script src="/js/app.js"></script>
+
+<script>
+  var disqus_shortname = 'jaffe1937-blog';
+
+  
+  var disqus_url = 'http://jaffe1937.github.io/Hexo安裝心得/';
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 
 
 
