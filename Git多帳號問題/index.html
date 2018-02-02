@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="記錄程式設計或其他跟技術相關的學習心得...">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Jaffe Tseng">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Git多帳號問題"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="記錄程式設計或其他跟技術相關的學習心得..." />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="im&#39;Jaffe"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Git多帳號問題 - im&#39;Jaffe</title>
+
+
+  <link rel="shortcut icon" href="https://github.com/jaffe1937/jaffe1937.github.io/blob/master/faviconj.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="images/faviconj.svg" alt="im'Jaffe" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Git多帳號問題
+            
+          </h1>
+          <p class="posted-on">
+          12-30-2017
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Blog, Git, Bitbucket, Github/" rel="tag">
+                  Blog, Git, Bitbucket, Github
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>有一陣子沒更新文章，都忘記自己還有一個 Blog 空間，剛好最近碰到 Git 使用多帳號問題，順便把處理過程記錄下來(<em>^◯^</em>)<br>自己使用 Github 空間放 Blog 文章，公司則使用 Bitbucket 作為版控，總不可能傻傻的下一堆指令切換，光是輸入一堆指令就覺得麻煩，於是上網 google 找了一些文章，只要設置 Blog 使用的 Github 帳號跟 Bitbucket 用的帳號，就可以達到多帳號管理。 </p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/fiYl5pA.png" alt="Git UI"></p>
+<h3 id="設置-SSH"><a href="#設置-SSH" class="headerlink" title="設置 SSH"></a>設置 SSH</h3><p>設置各自的 SSH-KEY ，假設我的 Github 跟 Bitbucket 使用者名稱為 blogPersonal 和 workComp ，帳號則各自對應 me@blogpersonal 和 me@workcomp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/.ssh</span><br><span class="line">$ ssh-keygen -t rsa -C &quot;me@workcomp&quot;</span><br><span class="line"># 把這個 key 存成 id_rsa_workcomp</span><br><span class="line">$ ssh-keygen -t rsa -C &quot;me@blogpersonal&quot;</span><br><span class="line"># 把這個 key 存成 id_rsa_blogpersonal</span><br></pre></td></tr></table></figure>
+<p>產生後的 KEY 在~/.ssh/ 目錄下</p>
+<ul>
+<li>id_rsa_blogpersonal</li>
+<li>id_rsa_blogpersonal.pub</li>
+<li>id_rsa_workcomp</li>
+<li>id_rsa_workcomp.pub</li>
+</ul>
+<h3 id="Github-跟-Bitbucket-新增-SSH"><a href="#Github-跟-Bitbucket-新增-SSH" class="headerlink" title="Github 跟 Bitbucket 新增 SSH"></a>Github 跟 Bitbucket 新增 SSH</h3><p>到各自的空間把設置後的 SSH 新增上去，於同目錄下，複製 public key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pbcopy &lt; ~/.ssh/id_rsa_workcomp.pub</span><br></pre></td></tr></table></figure>
+<p>Github：</p>
+<ul>
+<li>登入你的帳號</li>
+<li>到 Account Settings</li>
+<li>點擊 SSH Keys ，點擊 Add SSH Key 按鈕</li>
+<li>在輸入框內貼入剛剛複製的 KEY 然後點擊 Add Key 即可</li>
+</ul>
+<p>Bitbucket：</p>
+<ul>
+<li>登入你的帳號</li>
+<li>到 Bitbucket settings</li>
+<li>Security 項目下點擊 SSH keys ，點擊 Add Key 按鈕</li>
+<li>在 Key 輸入框內貼入剛剛複製的 KEY 然後點擊 Add Key 即可</li>
+</ul>
+<p>SSH 設定有疑義，請自行google或參閱<a href="https://jaffe1937.github.io/Hexo%E5%AE%89%E8%A3%9D%E5%BF%83%E5%BE%97/">Hexo安裝心得</a></p>
+<h3 id="配置-config-檔"><a href="#配置-config-檔" class="headerlink" title="配置 config 檔"></a>配置 config 檔</h3><p>接著只要在 ~/.ssh/ 目錄下產生 config 檔，這檔案用在設置私鑰對應各自的空間，建立 github.com 簡稱，使用這個簡稱做克隆和更新，簡稱可以依照個人喜好設定，只要<br>換成其他帳號<br> Host 是 github.com 的直接指到個人用的設定（KEY），當然也可以依照個人喜好把預設的換成其他帳號。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Github 上的帳號</span><br><span class="line">Host blogPersonal</span><br><span class="line">HostName github.com</span><br><span class="line">User blogPersonal</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_blogpersonal</span><br><span class="line">IdentitiesOnly yes</span><br><span class="line"></span><br><span class="line"># Bitbucket 上的帳號</span><br><span class="line">Host workComp</span><br><span class="line">HostName bitbucket.org</span><br><span class="line">User workComp</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_workcomp</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
+<h3 id="配置-Git-帳戶"><a href="#配置-Git-帳戶" class="headerlink" title="配置 Git 帳戶"></a>配置 Git 帳戶</h3><p>單一帳號時使用全域很方便，在多帳號情況下沒有取消全域，只針對專案目錄設置區域 git config ，使用 git push 還是會發生 Permission denied (publickey) 錯誤，可以先確認目前區域設定 <code>$ git config --list</code> ，全域設定的確認方式 <code>git config --list --global</code>，我採用取消全域的方式，懶得一直確認區域 git config 是否有設置完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 取消全域</span><br><span class="line">$ git config --global --unset user.name</span><br><span class="line">$ git config --global --unset user.email</span><br></pre></td></tr></table></figure>
+<p>專案目錄設置區域 git config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name &quot;your_name&quot;</span><br><span class="line">$ git config user.email &quot;your_email&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="SSH-連線設定"><a href="#SSH-連線設定" class="headerlink" title="SSH 連線設定"></a>SSH 連線設定</h3><p>config 檔寫完之後，接著測試是否連線ＯＫ？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 測試 Github 和 Bitbucket 連線</span><br><span class="line">$ ssh -T blogPersonal</span><br><span class="line">Hi blogPersonal! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">$ ssh -T workComp</span><br><span class="line">logged in as workComp.</span><br><span class="line">You can use git or hg to connect to Bitbucket. Shell access is disabled.</span><br><span class="line"></span><br><span class="line"># 無法連線</span><br><span class="line">Permission denied (publickey).</span><br><span class="line"></span><br><span class="line"># 確認 key 是否都加入了，如果沒有 key ，出現 The agent has no identities. 錯誤</span><br><span class="line">$ ssh-add -l</span><br><span class="line"></span><br><span class="line"># 添加 key ，ssh-add 在系統重啟後會有可能會丟失 key 的位置</span><br><span class="line">$ ssh-add ~/.ssh/id_rsa_workcomp</span><br></pre></td></tr></table></figure>
+<h3 id="新增-GIT-REPO"><a href="#新增-GIT-REPO" class="headerlink" title="新增 GIT REPO"></a>新增 GIT REPO</h3><p>在專案目錄下初始化 git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 專案目錄下</span><br><span class="line">$ mkdir Git_Hub/test-work &amp;&amp; cd Git_Hub/test-work</span><br><span class="line"></span><br><span class="line"># 隨便加個檔案</span><br><span class="line">$ touch readme.md</span><br><span class="line"></span><br><span class="line">$ git init</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -am &quot;first commit&quot;</span><br><span class="line">$ git remote add origin git@workComp:workComp/test-work.git</span><br><span class="line">$ git push origin master</span><br><span class="line">Push 成功就算大功告成！工作帳號也是類似指令。</span><br></pre></td></tr></table></figure>
+<h3 id="修改顯有-REPO"><a href="#修改顯有-REPO" class="headerlink" title="修改顯有 REPO"></a>修改顯有 REPO</h3><p>現有的專案的方式，修改專案下的 .git/config 檔案儲存著 git 的設定資訊</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 原本的 config是這樣的，現在我們改成</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = git@github.com:workComp/existing-project.git</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br><span class="line"></span><br><span class="line"># 改動的地方只有一個，把 host (github.com) 改成 work，這樣就可以了。</span><br><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = git@workComp:workComp/existing-project.git</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br></pre></td></tr></table></figure>
+<h3 id="Clone-遠端-REPO"><a href="#Clone-遠端-REPO" class="headerlink" title="Clone 遠端 REPO"></a>Clone 遠端 REPO</h3><p>Clone 遠端 REPO 的方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/Git_Hub/</span><br><span class="line">$ git clone git@workComp:userNmae/second_project.git</span><br><span class="line">$ cd second_project/</span><br><span class="line">$ git config user.name &quot;your_name&quot;</span><br><span class="line">$ git config user.email &quot;your_email&quot;</span><br><span class="line">$ touch readme.md</span><br><span class="line">$ git status</span><br><span class="line">$ git add readme.md </span><br><span class="line">$ git commit -m &quot;new file&quot;</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure></p>
+<h3 id="踩到的坑"><a href="#踩到的坑" class="headerlink" title="踩到的坑"></a>踩到的坑</h3><p>上述設置都ＯＫ後 git push 到遠端，發生 Permission denied (publickey) 錯誤，解決方式如下：</p>
+<ul>
+<li>確認 SSH-KEY 是否添加到帳戶內，使用 <code>$ ssh-add -l</code> 指令</li>
+<li>確認 /User/.ssh/config 中有無添加 IndentityFile ~/.ssh/id_rsa_workcomp</li>
+<li>使用測試命令 <code>ssh -v hg@bitbucket.org</code> ，確認是否有錯誤訊息，如果無法正常連線，使用下方步驟</li>
+<li>使用 <code>ssh-add ~/.ssh/id_rsa_workcomp</code> 添加 key</li>
+<li>ssh-add 添加還是有問題，請使用  <code>ssh-add -K ~/.ssh/id_rsa_workcomp</code></li>
+</ul>
+<h4 id="參考文章："><a href="#參考文章：" class="headerlink" title="參考文章："></a>參考文章：</h4><p><a href="https://medium.com/@trionkidnapper/ssh-keys-with-multiple-github-accounts-c67db56f191e" target="_blank" rel="noopener">SSH Keys with Multiple GitHub Accounts</a><br><a href="https://www.jianshu.com/p/8e0d54ee3d20" target="_blank" rel="noopener">git多用户管理</a><br><a href="https://juejin.im/entry/57a8a7ecd342d3005772a2e0" target="_blank" rel="noopener">深入浅出 Git 权限校验</a><br><a href="http://finfin.github.io/2015/01/16/multiple-git-accounts.html" target="_blank" rel="noopener">同時使用多個 Git 帳號</a></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-Git多帳號問題';
+          this.page.title = 'Git多帳號問題';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/EC2-安裝-Ubuntu-16-04/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/jQuery表格工具-DataTables/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+
+    <script type="text/javascript">
+    var disqus_shortname = 'jaffe1937-blog';
+    var disqus_config = function () {
+        this.page.url = 'http://jaffe1937.github.io/Git多帳號問題/';
+        this.page.identifier = '/Git多帳號問題/';
+        this.page.title = 'Git多帳號問題';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">關於本站</h1>
+        <div class="custom-widget-content">
+          
+          記錄程式設計或其他跟技術相關的學習心得...
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/jaffe1937" class="icon icon-github" target="_blank">github</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>im'Jaffe &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+<script>
+  var disqus_shortname = 'jaffe1937-blog';
+
+  
+  var disqus_url = 'http://jaffe1937.github.io/Git多帳號問題/';
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+</body>
+
+</html>

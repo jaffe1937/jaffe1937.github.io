@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="記錄程式設計或其他跟技術相關的學習心得...">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Jaffe Tseng">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Hexo安裝心得"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="記錄程式設計或其他跟技術相關的學習心得..." />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="im&#39;Jaffe"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Hexo安裝心得 - im&#39;Jaffe</title>
+
+
+  <link rel="shortcut icon" href="https://github.com/jaffe1937/jaffe1937.github.io/blob/master/faviconj.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="images/faviconj.svg" alt="im'Jaffe" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Hexo安裝心得
+            
+          </h1>
+          <p class="posted-on">
+          05-12-2017
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/Blog, Node.js, Hexo, Github/" rel="tag">
+                  Blog, Node.js, Hexo, Github
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一開始原本打算使用wordpress，評估後覺得wordpress，運行成本跟後續維護上比較高，至於免費blog不考慮，雖然有些免費的blog可以幫忙處理SEO，但對我來說這裡就是一個紀錄技術的地方，所以在google上找了一些方案，發現對岸的不少人使用Hexo架站，而且可以跟github配合，再加上之前申請github都沒有使用，乾脆選Hexo+github作為blog，順便練習git，安裝過程不難，這邊紀錄作為blog的第一篇文章。</p>
+<a id="more"></a>
+<h2 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h2><p>Hexo基於Node.js開發，作者是台灣人(tommy351 )，詳細介紹請參考<a href="http://zespia.tw/blog/2012/10/11/hexo-debut/" target="_blank" rel="noopener">這邊</a></p>
+<h3 id="我的搭建環境-mac系統下-："><a href="#我的搭建環境-mac系統下-：" class="headerlink" title="我的搭建環境(mac系統下)："></a>我的搭建環境(mac系統下)：</h3><p>node: v6.9.1<br>git: v2.9.2</p>
+<ul>
+<li>node.js + npm</li>
+<li>github帳號 + 創建倉庫</li>
+<li>安裝hexo</li>
+<li>部署至github</li>
+</ul>
+<h3 id="安裝node-js"><a href="#安裝node-js" class="headerlink" title="安裝node.js"></a>安裝node.js</h3><p>下載node.js有不同的方法，我個人是到node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網下載</a>，直接安裝到電腦上；到官網下載安裝檔好處是不用另外安裝npm，node.js安裝檔已將npm包含在內，安裝的介面如圖所示：</p>
+<p>另一種方法使用brew下載安裝，我沒有使用brew安裝，請自行google查看安裝方法，這邊不做說明。</p>
+<p><img src="https://i.imgur.com/lm15qB5.png" alt="Node.js install"></p>
+<p><img src="https://i.imgur.com/r5hUUBm.png" alt="Node.js installation successfully"></p>
+<p>安裝完畢，開啟terminal測試是否安裝成功，安裝成功會顯示版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">v6.9.1</span><br><span class="line"></span><br><span class="line">$ npm -v</span><br><span class="line">3.10.8</span><br></pre></td></tr></table></figure>
+<h3 id="github帳號"><a href="#github帳號" class="headerlink" title="github帳號"></a>github帳號</h3><p>已有帳號的可以直接略過</p>
+<p>1.到github官網：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
+<p>2.填寫相關註冊資料，填寫完之後點擊Sign up for GitHub按鈕，一般選擇免費的部分，有需求的人也可以付費。</p>
+<p><img src="https://i.imgur.com/i3C4VL3.png" alt="github"></p>
+<h3 id="創建倉庫"><a href="#創建倉庫" class="headerlink" title="創建倉庫"></a>創建倉庫</h3><p>登入github帳號，創建倉庫名稱必須依照 <code>github帳號.github.io</code> ，github規定的格式無法自訂，例如我的格式：<code>jaffe1937.github.io</code>，填寫好相關資料即可以創建<br>Create repository按鈕。</p>
+<p><img src="https://i.imgur.com/POBxuud.png" alt="Create new repository"></p>
+<p><img src="https://i.imgur.com/Djk5Xrj.png" alt="Create github.io"></p>
+<h3 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h3><p>已配置過可以直接略過</p>
+<p>1.不確定是否有ssh keys，打開terminal輸入 <code>$ ls -al ~/.ssh</code>，之前建立的ssh keys如圖所示：</p>
+<p><img src="https://i.imgur.com/OkF21lM.png" alt="check ssh keys"></p>
+<p>2.設置username和email：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;你的 GitHub帳戶名&quot;</span><br><span class="line">$ git config --global user.email &quot;你的 GitHub註冊mail&quot;</span><br></pre></td></tr></table></figure>
+<p>3.建立新的ssk keys<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;你的 GitHub註冊mail&quot;</span><br></pre></td></tr></table></figure></p>
+<p>出現下面訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line"></span><br><span class="line">Enter file in which to save the key (/Users/you/.ssh/id_rsa):</span><br></pre></td></tr></table></figure></p>
+<p>一般情況不需要密碼，直接 <code>enter</code> 就好，在本機的用戶資料夾下會有一個新的文件夾.ssh，裡面有剛建立的ssh密鑰，<code>id_rsa</code>和<code>id_rsa.pub</code>。</p>
+<p><code>id_rsa</code>是私鑰，請妥善保管不要外流，<code>id_rsa.pub</code>是公鑰。</p>
+<p>4.把剛剛建立的公鑰加到github，到github頁面，右上角點擊『 Settings 』，在電擊左側的『 SSH and GPG keys 』，然後點擊『 New SSH key 』</p>
+<p><img src="https://i.imgur.com/h0ocUFc.png" alt="github settings">   </p>
+<p><img src="https://i.imgur.com/CwOs7Kn.png" alt="SSH and GPG keys"></p>
+<p>把<code>id_rsa.pub</code>公鑰的內容都複製到Key文字框，點擊Add SSH key。</p>
+<p><img src="https://i.imgur.com/Y2kScnU.png" alt="github ssh id_rsa.pub"></p>
+<p>5.測試ssh連接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果出現下邊訊息，請輸入<code>yes</code>後，按下<code>Enter</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;github.com (207.97.227.239)&apos; can&apos;t be established. </span><br><span class="line">RSA key fingerprint is 17:24:ac:a5:76:28:24:36:62:1b:36:4d:eb:df:a6:45.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span><br></pre></td></tr></table></figure>
+<p>顯示如下的訊息，則代表連接成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi, 用户名/用户名.github.io! You&apos;ve successfully authenticated, but GitHub does notprovide shell access.</span><br></pre></td></tr></table></figure>
+<h3 id="安裝hexo"><a href="#安裝hexo" class="headerlink" title="安裝hexo"></a>安裝hexo</h3><p>1.安裝hexo<br>請確認已安裝node.js，如果沒有安裝請先安裝node.js。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<p>安裝時使用<code>npm install hexo-cli -g</code>報錯，因為權限不足所以才會報錯，只需要加上<code>sudo</code>即可解決。</p>
+<p>2.初始化hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></p>
+<p>3.安裝依賴<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>4.啟動hexo<br>hexo server</p>
+<p>啟動之後，開啟瀏覽器在網址列輸入：<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，會看到Hexo預設頁面。</p>
+<h3 id="建立新文章"><a href="#建立新文章" class="headerlink" title="建立新文章"></a>建立新文章</h3><p>1.新建文章</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>hexo資料夾下的source_posts子資料夾，會建立一個『 title.md 』的文件，如果要刪除，直接刪除此資料夾下對應的文件。</p>
+<p>2.生成靜態頁面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>生成的靜態頁面會在public資料夾。</p>
+<p>3.清除生成內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>執行此命令會刪除public資料夾下的所有內容。</p>
+<p>4.部署hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>此命令會將hexo的靜態內容，部署至github倉庫中。</p>
+<h3 id="部署至github"><a href="#部署至github" class="headerlink" title="部署至github"></a>部署至github</h3><p>1.編輯配置檔<br>使用自己慣用的編輯器打開hexo配置檔_config.yml，找到如下的內容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">type:</span><br></pre></td></tr></table></figure>
+<p>加入github倉庫資訊，參考如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:jaffe1937/jaffe1937.github.io.git  #github倉庫地址</span><br><span class="line">  branch: master  #github分支</span><br></pre></td></tr></table></figure>
+<p>2.安裝git外掛<br>沒有安裝外掛，直接部署會報錯，安裝後再重新部署一次就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>3.部署至github<br>沒特別的情況，通常就可以部署到github，透過 http://&lt;帳號名&gt;.github.io 查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="hexo命令縮寫"><a href="#hexo命令縮寫" class="headerlink" title="hexo命令縮寫"></a>hexo命令縮寫</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo g：hexo generate</span><br><span class="line"></span><br><span class="line">hexo c：hexo clean</span><br><span class="line"></span><br><span class="line">hexo s：hexo server</span><br><span class="line"></span><br><span class="line">hexo d：hexo deploy</span><br></pre></td></tr></table></figure>
+<h4 id="hexo命令組合"><a href="#hexo命令組合" class="headerlink" title="hexo命令組合"></a>hexo命令組合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g -s，清除、生成、啟動</span><br><span class="line"></span><br><span class="line">hexo clean &amp;&amp; hexo g -d，清除、生成、部署</span><br></pre></td></tr></table></figure>
+<h4 id="建立時踩到的坑"><a href="#建立時踩到的坑" class="headerlink" title="建立時踩到的坑"></a>建立時踩到的坑</h4><p>1.使用<code>npm install hexo-cli -g</code>無權限寫入，後來發現只要前面加<code>sudo</code>就可以解決</p>
+<p>2.無法部署到github<br>執行這串命令時，<code>$ npm install hexo-deployer-git --save</code>，前面加了<code>sudo</code>還是報錯，google找到一篇文章提醒，這串命令必須進到hexo目錄下執行，才解決部署的問題。</p>
+<h4 id="參考文章："><a href="#參考文章：" class="headerlink" title="參考文章："></a>參考文章：</h4><p><a href="http://www.cnblogs.com/liulangmao/p/4323064.html" target="_blank" rel="noopener">http://www.cnblogs.com/liulangmao/p/4323064.html</a><br><a href="http://www.jianshu.com/p/f4cc5866946b" target="_blank" rel="noopener">http://www.jianshu.com/p/f4cc5866946b</a><br><a href="http://www.aliengu.com/archives/1630" target="_blank" rel="noopener">http://www.aliengu.com/archives/1630</a></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-Hexo安裝心得';
+          this.page.title = 'Hexo安裝心得';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/Facebook-PHP-SDK-v5-升級/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/hello-world/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+
+    <script type="text/javascript">
+    var disqus_shortname = 'jaffe1937-blog';
+    var disqus_config = function () {
+        this.page.url = 'http://jaffe1937.github.io/Hexo安裝心得/';
+        this.page.identifier = '/Hexo安裝心得/';
+        this.page.title = 'Hexo安裝心得';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">關於本站</h1>
+        <div class="custom-widget-content">
+          
+          記錄程式設計或其他跟技術相關的學習心得...
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/jaffe1937" class="icon icon-github" target="_blank">github</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>im'Jaffe &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+<script>
+  var disqus_shortname = 'jaffe1937-blog';
+
+  
+  var disqus_url = 'http://jaffe1937.github.io/Hexo安裝心得/';
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+</body>
+
+</html>
