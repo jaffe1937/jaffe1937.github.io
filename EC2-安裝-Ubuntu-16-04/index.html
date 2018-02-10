@@ -126,8 +126,8 @@
           <div class="tags-links">
             
               
-                <a href="/tags/EC2, Ubuntu, Node.js, MongoDB/" rel="tag">
-                  EC2, Ubuntu, Node.js, MongoDB
+                <a href="/tags/AWS, EC2, Ubuntu/" rel="tag">
+                  AWS, EC2, Ubuntu
                 </a>
               
             
@@ -135,7 +135,47 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          
+          <p>公司的主機都寄放在 AWS 上，本篇主要講建立 EC2 主機，註冊流程就略過不講，沒有 AWS 帳號請先到 Amazon 註冊，第一次註冊的話，可以免費試用一台微型主機12個月的優惠。</p>
+<a id="more"></a>
+<h3 id="AWS"><a href="#AWS" class="headerlink" title="AWS"></a>AWS</h3><p>登入 AWS 管理主控台，輸入你個人或公司的 AWS 帳號，登入後點選左上角 Services 打開選單，選擇 EC2。</p>
+<p><img src="https://i.imgur.com/px0rAGm.png" alt="AWS Login"></p>
+<p><img src="https://i.imgur.com/dni95So.png" alt="AWS Console"></p>
+<p>接著在右上角選擇地理區域，列表是 AWS 在全球的幾個機房，選擇距離自己比較近的位置，這會決定連接主機的速度，台灣可以選擇“Asia Pacific (Tokyo)” 或 “Asia Pacific (Singapore)” 擇一，兩者的速度都差不多，不確定選那個區域，可以使用<a href="http://www.cloudping.info/" target="_blank" rel="noopener">CloudPing.info</a>測試連線速度，aws 每個區域的主機價格會有些不同，所以選擇上要依自己預算來選擇。</p>
+<p><img src="https://i.imgur.com/fqjvGH7.png" alt="AWS Local"></p>
+<h3 id="建立-EC2-主機"><a href="#建立-EC2-主機" class="headerlink" title="建立 EC2 主機"></a>建立 EC2 主機</h3><p>建立 EC2 主機的步驟比較多，這邊只做必要的修改，大部分都保留默認值，點選左側 Instance 再點選藍色藍色按鈕 Launch Instance 進入建立主機的選單。</p>
+<p><img src="https://i.imgur.com/f8Kr2fc.png" alt="EC2 Instance"></p>
+<p>Step 1 - Amazon Machine Image (AMI)<br>AMI 就是主機裝載的系統，在選單中有眾多的 Linx 版本，可以選擇自己習慣的 Linux 版本進行安裝，這裡選擇 ”Ubuntu Server 16.04 LTS (HVM), SSD Volume Type“ 版本作為 Linux 系統。</p>
+<p><img src="https://i.imgur.com/sVn2BTX.png" alt="linux AMI"></p>
+<p>Step 2 - Instance Type（實例類型）<br>這裡可以依照自己的情況選擇主機等級，各區域的主機價格不同，我的情況選擇 ”t2.micro“ 等級的主機就足夠了，接著點擊右下角的 ”Next: Configure Instance Details“ 按鈕。</p>
+<p>若是你沒有其他的細節需要修改，可點選下方藍色按鈕 Review and Launch，即可跳到第七步驟，點擊右下角”Launch“（啟動）快速建置。</p>
+<p>主機類型有很多，有針對 CPU 計算、GPU 計算、需要使用高記憶體或通用類型的，在這個選單頁面可以看到各主機的大致情況，詳細的價格及主機類型參考 <a href="https://aws.amazon.com/tw/ec2/pricing/" target="_blank" rel="noopener">AWS 這個頁面</a>。</p>
+<p><img src="https://i.imgur.com/cU8AlrN.png" alt="Instance Type"></p>
+<p>Step 3 - Configure Instance Details<br>這裡是一些細節的配置，全部先使用默認值，裡面有一個 Subnet 選項有設定 VPC 的人，要在這邊修改為 VPC 所設定的 Subnet，接著點擊 ”Next: Add Storage“。</p>
+<p><img src="https://i.imgur.com/4VD3cn6.png" alt="Instance Details"></p>
+<p>Step 4 - Add Storage<br>這裡是初始化存儲大小。<br>AWS 默認使用 SSD，免費額度有30GB的 SSD，Size 默認為8GB，這邊依自己的情況修改大小，我一般設定20GB，接著點擊下一步，也就是 ”Next: Add Tags“。</p>
+<p><img src="https://i.imgur.com/JtUYx1p.png" alt="Instance Storage"></p>
+<p>Step 5 - Add Tags<br>標籤可以作為當主機太多時，便於分類管理，默認沒有名稱需要自己加入主機的名稱，可以什麼都不寫直接下一步，等主機建立好再寫也可以，接著下一步  ”Next: Configure Security Group“。</p>
+<p><img src="https://i.imgur.com/iZQdSeq.png" alt="Instance None Tags"></p>
+<p><img src="https://i.imgur.com/MBekVWt.png" alt="Instance Add Tags"></p>
+<p>Step 6 - Configure Security Group<br>這邊使用默認值，有特別需要的時候再去設定就可以了，直接點下一步 ”Review and Launch“。</p>
+<p><img src="https://i.imgur.com/t8Vsxt1.png" alt="Instance Security"></p>
+<p>Step 7 - Review Instance Launch<br>這裡檢查第1-6步驟所設置的內容，確認無誤後點右下角 ”Launch“ 後，會跳出一個視窗，在第一個下拉框選擇 ”Create a new key pair” ，在 ”Key pair name“ 輸入該密鑰對的名字，可以是任意名稱，我這裡使用 ”testec2“，點擊 ”Download Key Pair“，這個密鑰是之後用來連接主機的，絕對不能丟，也不能被盜，只有這次下載的機會，之後無法再次下載，務必要保存好，接著點右下角 ”Launch Instances“。</p>
+<p><img src="https://i.imgur.com/d01uEof.png" alt="Launch Instance"></p>
+<p><img src="https://i.imgur.com/NnKiwvu.png" alt="SSH Connection EC2"></p>
+<p><img src="https://i.imgur.com/aIA6Qn3.png" alt="Launch Status"></p>
+<h3 id="連線-EC2-主機"><a href="#連線-EC2-主機" class="headerlink" title="連線 EC2 主機"></a>連線 EC2 主機</h3><p>建立好主機連進去做後續的設定，點選上方 ”Connect“ 按鈕後會跳出一個視窗，複製 ”Example“ 的位置。</p>
+<p><img src="https://i.imgur.com/AUfw7PS.png" alt="EC2 Instance"></p>
+<p><img src="https://i.imgur.com/keVYpqN.png" alt="Connect Instance"></p>
+<p>打開慣用的終端，在終端貼上剛剛複製的連線位置，視窗會詢問是否要進行連線，輸入 ”yes“ 連線進主機，若是出現如下的警告錯誤，請使用 <code>chmod 400 testec2.pem</code> 修改密鑰的讀取權限，修改後再次用剛剛的連線位置連線進主機</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Warning: Permanently added &apos;ec2-13-229-236-79.ap-southeast-1.compute.amazonaws.com,13.229.236.79&apos; (ECDSA) to the list of known hosts.</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span><br><span class="line">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span><br><span class="line">Permissions 0644 for &apos;testec2.pem&apos; are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key &quot;testec2.pem&quot;: bad permissions</span><br><span class="line">Permission denied (publickey).</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/3wZp1Xh.png" alt="Terminal Connect"></p>
+<p>當終端顯示為下圖，已成功連進你的 EC2 主機，我安裝的 Linux 版本是 Ubuntu，AWS 預設使用的帳號 Ubuntu，而不是 root，所以安裝套件需要管理者權限，請使用 sudo 取得暫時的管理者權限，其他的使用方式跟一般 Ubuntu 沒什麼不同。</p>
+<p><img src="https://i.imgur.com/exXpkVE.png" alt="EC2 Linux"></p>
+<p>當需要將 EC2 關閉、重啟、刪除時，點擊上方的 ”Actions“ 按鈕，在選單中選擇 “Instance State”，可以看到有 “Start, Stop, Reboot, Terminate ”，分別對應“開機，關機，重啟，清除”；關機之後再開機的話，AWS EC2主機的 Public_IP 會改變；如果是重啟的話，就不會變。清除是當你再也不會使用這台主機時所需的操作。</p>
+<p><img src="https://i.imgur.com/LXr2cuo.png" alt="Instance State"></p>
+<h3 id="AWS-EC2計費方式"><a href="#AWS-EC2計費方式" class="headerlink" title="AWS EC2計費方式"></a>AWS EC2計費方式</h3><p>EC2 計費方式是，每次開機就扣除一個小時的錢，當持續運行一個小時後，就再扣除一個小時的錢。所以如果你在一個小時內，開機、關機、再次開機，是會扣除兩個小時的錢的；而你開機一次，運行1h 59min，也是扣除兩個小時的錢，<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html" target="_blank" rel="noopener">詳細請參見</a>。當關機而不是選擇刪除，AWS 會一樣收取儲存的費用，我們的主機使用的是 EBS 儲存，當刪除之後，就不收取費用了，因為 AWS 會刪除你儲存的所有文件。</p>
+<h4 id="參考文章："><a href="#參考文章：" class="headerlink" title="參考文章："></a>參考文章：</h4><p><a href="https://blog.json.tw/teaching-ten-minutes-to-quickly-build-a-free-amazon-ec2-host" target="_blank" rel="noopener">[教學]十分鐘快速建立Amazon EC2免費主機</a><br><a href="http://dez.logdown.com/posts/2017/04/07/aws-ec2-deploy-nodejs-web-app" target="_blank" rel="noopener">在AWS EC2部署Node.js web教學</a><br><a href="https://www.datacamp.com/community/tutorials/aws-ec2-beginner-tutorial" target="_blank" rel="noopener">AWS EC2 Tutorial For Beginners</a></p>
+
         </div>
       </article>
     </div>
